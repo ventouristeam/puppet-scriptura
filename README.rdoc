@@ -1,0 +1,5 @@
+= puppet-scriptura module
+
+{<img src='https://codex.cegeka.be/jenkins/job/puppet-scriptura/badge/icon' />}[https://codex.cegeka.be/jenkins/job/puppet-scriptura/]
+
+This is the scriptura module.
