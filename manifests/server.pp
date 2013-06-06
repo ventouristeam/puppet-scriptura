@@ -1,5 +1,10 @@
 class scriptura::server($version=undef, $key_server=undef, $server_category='production') {
 
+  include stdlib
+
+  anchor { 'scriptura::server::begin': }
+  anchor { 'scriptura::server::end': }
+
   if ! $version {
     fail('Class[Scriptura::Server]: parameter version must be provided')
   }
@@ -23,6 +28,6 @@ class scriptura::server($version=undef, $key_server=undef, $server_category='pro
 
   include scriptura::server::service
 
-  Class['Scriptura::Server::Package'] -> Class['Scriptura::Server::Config'] ~> Class['Scriptura::Server::Service']
+  Anchor['scriptura::server::begin'] -> Class['Scriptura::Server::Package'] -> Class['Scriptura::Server::Config'] ~> Class['Scriptura::Server::Service'] -> Anchor['scriptura::server::end']
 
 }
