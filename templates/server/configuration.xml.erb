@@ -12,5 +12,41 @@
     <keyserver>
       <enabled>false</enabled>
     </keyserver>
-  </license>
+	</license>
+  <server>
+    <documentflow>
+      <security>
+        <roles>
+          <role0>
+            <canpreview>true</canpreview>
+            <name>anonymousrole</name>
+            <canadmin>false</canadmin>
+         </role0>
+         <role1>
+           <name>adminrole</name>
+           <canadmin>true</canadmin>
+           <canpreview>true</canpreview>
+         </role1>
+       </roles>
+     </security>
+    </documentflow>
+    <ondemand>
+      <security>
+        <enabled>false</enabled>
+        <roles>
+          <role0>
+            <name>anonymousrole</name>
+            <schema/>
+          </role0>
+        </roles>
+      </security>
+    </ondemand>
+  </server>
+  <templateprocessor>
+    <cache>
+      <max-memory-entries>100</max-memory-entries>
+      <max-disk-entries>200</max-disk-entries>
+      <max-disk-space>500</max-disk-space>
+    </cache>
+  </templateprocessor>
 </config>
