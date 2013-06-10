@@ -14,6 +14,22 @@
     </keyserver>
 	</license>
   <server>
+    <documentflow>
+      <security>
+        <roles>
+          <role0>
+            <canpreview>true</canpreview>
+            <name>anonymousrole</name>
+            <canadmin>false</canadmin>
+         </role0>
+         <role1>
+           <name>adminrole</name>
+           <canadmin>true</canadmin>
+           <canpreview>true</canpreview>
+         </role1>
+       </roles>
+     </security>
+    </documentflow>
     <ondemand>
       <security>
         <enabled>false</enabled>
