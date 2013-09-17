@@ -18,6 +18,13 @@ describe 'scriptura::server' do
       )}
     end
 
+    context 'without mail_host' do
+      let (:params) { { :version => '7.2.6-3.cgk.el6', :key_server => 'foo.example.com' } }
+      it { expect { subject }.to raise_error(
+        Puppet::Error, /parameter mail_host must be provided/
+      )}
+    end
+
     context 'with server_category => foo' do
       let (:params) { { :version => '7.2.6-3.cgk.el6', :key_server => 'foo.example.com', :server_category => 'foo' } }
       it { expect { subject }.to raise_error(
@@ -28,7 +35,7 @@ describe 'scriptura::server' do
 
   context 'with parameters' do
     context 'version => 7.2.6-3.cgk.el6, key_server => foo.example.com' do
-      let (:params) { { :version => '7.2.6-3.cgk.el6', :key_server => 'foo.example.com' } }
+      let (:params) { { :version => '7.2.6-3.cgk.el6', :key_server => 'foo.example.com', :mail_host => 'smtp.example.com' } }
 
       it { should contain_class('scriptura::server::package').with_version('7.2.6-3.cgk.el6')}
 
@@ -42,7 +49,7 @@ describe 'scriptura::server' do
     end
 
     context 'version => 7.2.6-3.cgk.el6, key_server => foo.example.com, server_category => development' do
-      let (:params) { { :version => '7.2.6-3.cgk.el6', :key_server => 'foo.example.com', :server_category => 'development' } }
+      let (:params) { { :version => '7.2.6-3.cgk.el6', :key_server => 'foo.example.com', :server_category => 'development', :mail_host => 'smtp.example.com' } }
 
       it { should contain_class('scriptura::server::package').with_version('7.2.6-3.cgk.el6')}
 

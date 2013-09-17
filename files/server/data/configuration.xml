@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <!--
+
+
+For more info, check the manual.
+-->
+    <server>
+        <deploy>
+            <rest>
+                <security>
+                    <roles>
+                        <role0>
+                            <name>adminrole</name>
+                        </role0>
+                    </roles>
+                </security>
+            </rest>
+        </deploy>
+        <documentflowadminsoap>
+            <security>
+                <roles>
+                    <role0>
+                        <schema/>
+                        <name>adminrole</name>
+                    </role0>
+                </roles>
+            </security>
+        </documentflowadminsoap>
+        <htmlforms>
+            <administrator>
+                <administration-security>
+                    <roles>
+                        <role1>
+                            <schema/>
+                            <name>anonymousrole</name>
+                        </role1>
+                        <role0>
+                            <schema/>
+                            <name>adminrole</name>
+                        </role0>
+                    </roles>
+                </administration-security>
+            </administrator>
+        </htmlforms>
+        <documentflow>
+            <security>
+                <roles>
+                    <role0>
+                        <name>anonymousrole</name>
+                        <canadmin>false</canadmin>
+                        <canpreview>true</canpreview>
+                    </role0>
+                    <role1>
+                        <canpreview>true</canpreview>
+                        <name>adminrole</name>
+                        <canadmin>true</canadmin>
+                    </role1>
+                </roles>
+            </security>
+        </documentflow>
+    </server>
+    <license>
+        <client>
+            <GUID></GUID>
+            <userhome></userhome>
+        </client>
+    </license>
+</config>
