@@ -6,6 +6,17 @@
 For more info, check the manual.
 -->
     <server>
+        <deploy>
+            <rest>
+                <security>
+                    <roles>
+                        <role0>
+                            <name>adminrole</name>
+                        </role0>
+                    </roles>
+                </security>
+            </rest>
+        </deploy>
         <documentflowadminsoap>
             <security>
                 <roles>
