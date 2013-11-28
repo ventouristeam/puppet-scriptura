@@ -32,7 +32,7 @@ class scriptura::server::config(
     ensure => directory,
     owner  => 'scriptura',
     group  => 'scriptura',
-    mode   => '0700'
+    mode   => '0770'
   }
 
   file { "/data/scriptura/scriptura-${scriptura_major_minor_version}" :
