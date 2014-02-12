@@ -1,5 +1,6 @@
 class scriptura::server(
   $version=undef,
+  $versionlock=false,
   $key_server=undef,
   $server_category='production',
   $mail_host=undef,
@@ -35,7 +36,8 @@ class scriptura::server(
   }
 
   class { 'scriptura::server::package':
-    version => $version
+    version     => $version,
+    versionlock => $versionlock
   }
 
   class { 'scriptura::server::config':
