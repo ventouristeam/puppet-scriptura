@@ -3,6 +3,8 @@ class scriptura::management(
   $versionlock=false
 ) {
 
+  include stdlib
+
   anchor { 'scriptura::management::begin': }
   anchor { 'scriptura::management::end': }
 
