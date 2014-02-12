@@ -1,4 +1,9 @@
-class scriptura::management($version=undef) {
+class scriptura::management(
+  $version=undef,
+  $versionlock=false
+) {
+
+  include stdlib
 
   anchor { 'scriptura::management::begin': }
   anchor { 'scriptura::management::end': }
@@ -8,7 +13,8 @@ class scriptura::management($version=undef) {
   }
 
   class { 'scriptura::management::package':
-    version => $version
+    version     => $version,
+    versionlock => $versionlock
   }
 
   include scriptura::management::config
