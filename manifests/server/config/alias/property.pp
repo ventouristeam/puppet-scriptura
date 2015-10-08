@@ -1,3 +1,18 @@
+# Define: scriptura::server::config::alias::property
+#
+# You need to specify the property title as the name of the XML tag element
+# e.g. property0, property1, ...
+#
+# Sample Usage:
+#
+# scriptura::server::config::alias::property { 'property0':
+#   version      => '7.3.24-1.cgk.el6',
+#   config_alias => 'alias0',
+#   type         => 'string',
+#   name         => 'com.id.scriptura.jms.configuration.session.alias.broker',
+#   value        => 'sonic-mq'
+# }
+#
 define scriptura::server::config::alias::property(
   $version = undef,
   $config_alias = undef,

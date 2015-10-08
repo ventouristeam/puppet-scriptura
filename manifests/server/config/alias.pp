@@ -1,3 +1,16 @@
+# Define: scriptura::server::config::alias
+#
+# You need to specify the alias title as the name of the XML tag element
+# e.g. alias0, alias1, ...
+#
+# Sample Usage:
+#
+# scriptura::server::config::alias { 'alias0':
+#   version      => '7.3.24-1.cgk.el6',
+#   type         => 'jms-session',
+#   name         => 'Sonic'
+# }
+#
 define scriptura::server::config::alias(
   $version = undef,
   $type = undef,
