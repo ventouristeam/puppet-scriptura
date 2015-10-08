@@ -1,3 +1,14 @@
+# Define: scriptura::server::config::element
+#
+# You can use this for settings that are not complicated and start directly under the <config> tag in the configuration
+#
+# Sample Usage:
+#
+# scriptura::server::config::element { 'documentflowprocessor/max-threads':
+#   version => '7.3.24-1.cgk.el6',
+#   value   => '500'
+# }
+#
 define scriptura::server::config::element(
   $version = undef,
   $value = undef
