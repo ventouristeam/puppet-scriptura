@@ -61,7 +61,9 @@ define scriptura::iac::server(
     logger_max_file_size     => $logger_max_file_size
   }
 
-  include scriptura::server::service
+  scriptura::iac::server::service { "scriptura-engage-$type" :
+    type  => $type
+  }
 
   Anchor['scriptura::iac::server::begin'] -> Class['Scriptura::Iac::Server::Package'] -> Class['Scriptura::Iac::Server::Config'] ~> Class['Scriptura::Iac::Server::Service'] -> Anchor['scriptura::iac::server::end']
 
