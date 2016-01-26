@@ -41,6 +41,7 @@ define scriptura::iac::server(
   }
 
   scriptura::iac::server::package { "scriptura-engage-$type" :
+    type        => $type,
     version     => $version,
     versionlock => $versionlock
   }
