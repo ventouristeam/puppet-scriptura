@@ -1,4 +1,4 @@
-define scriptura::server::config(
+define scriptura::iac::server::config(
   $version=undef,
   $type=undef,
   $key_server=undef,

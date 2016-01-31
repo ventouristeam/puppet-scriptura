@@ -1,4 +1,4 @@
-define scriptura::server::service (
+define scriptura::iac::server::service (
   $type=undef,
   $ensure=running
 ) {

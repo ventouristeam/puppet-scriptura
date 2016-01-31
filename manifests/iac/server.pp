@@ -17,9 +17,6 @@ define scriptura::iac::server(
 
   include stdlib
 
-  anchor { 'scriptura::iac::server::begin': }
-  anchor { 'scriptura::iac::server::end': }
-
   if ! $version {
     fail('Class[Scriptura::IAC::Server]: parameter version must be provided')
   }
@@ -41,6 +38,7 @@ define scriptura::iac::server(
   }
 
   scriptura::iac::server::package { "scriptura-engage-$type" :
+    type        => $type,
     version     => $version,
     versionlock => $versionlock
   }
@@ -58,11 +56,13 @@ define scriptura::iac::server(
     cache_max_disk_entries   => $cache_max_disk_entries,
     fonts_dir                => $fonts_dir,
     logger_max_file_index    => $logger_max_file_index,
-    logger_max_file_size     => $logger_max_file_size
+    logger_max_file_size     => $logger_max_file_size,
+    require                  => Scriptura::Iac::Server::Package["scriptura-engage-$type"]
   }
 
-  include scriptura::server::service
-
-  Anchor['scriptura::iac::server::begin'] -> Class['Scriptura::Iac::Server::Package'] -> Class['Scriptura::Iac::Server::Config'] ~> Class['Scriptura::Iac::Server::Service'] -> Anchor['scriptura::iac::server::end']
+  scriptura::iac::server::service { "scriptura-engage-$type" :
+    type    => $type,
+    require => Scriptura::Iac::Server::Package["scriptura-engage-$type"]
+  }
 
 }
