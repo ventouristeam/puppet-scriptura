@@ -8,6 +8,17 @@ define scriptura::iac::server::package(
     ensure => $version
   }
 
+  case $type {
+    frontend: {
+      package { 'existdb':
+        ensure => 'present'
+      }
+    }
+    default: {
+      info('No additional packages required')
+    }
+  }
+
   case $versionlock {
     true: {
       packagelock { "scriptura-engage-${type}": }
