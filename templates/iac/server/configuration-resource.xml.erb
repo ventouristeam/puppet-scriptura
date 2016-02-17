@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <!--
+
+
+For more info, check the manual.
+-->
+    <license>
+        <client>
+            <GUID type="value">5dafc683f98c5409903a7c358ce2e6ab40941988</GUID>
+            <userhome encryption="aes" type="value">AAAAAAAAABAzQ1F6NEFmODR4SjBGMVdXm/Z6Bvo3Fd0VPSsmnDce0RHymPnTT3TqBy3zbNQ3fcM=</userhome>
+            <keyserver>
+                <uri type="value">http://scriptlic8.cegeka.be:13442</uri>
+            </keyserver>
+        </client>
+    </license>
+    <server>
+        <resources>
+            <stores>
+                <store_0>
+                    <name type="value">default-store</name>
+                    <type type="value">havail</type>
+                    <settings>
+                        <location type="value">/data/scriptura/resource/scriptura-8.0/data/default-store</location>
+                        <location-temp type="value">/data/scriptura/resource/scriptura-8.0/data/tmp</location-temp>
+                    </settings>
+                </store_0>
+            </stores>
+        </resources>
+        <security>
+            <key>
+                <public type="value">MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEZ5CYfBqpRJFugNaqNAoid3f7Zo6ct2eEhnNmTGFrdgcevuVtMwVMd3fXXF52sDiHXM6w2hHloZxP-_QRh-3b0g</public>
+            </key>
+            <security-server-location type="value">http://scriptlic8.cegeka.be:13442</security-server-location>
+        </security>
+    </server>
+    <generic>
+        <environment type="value">production</environment>
+        <hostname type="value">lbventddoc8-resource-partena.intra.cegeka.be</hostname>
+        <tag>
+            <resource type="value">ScripturaStartResourceServer</resource>
+        </tag>
+        <setup>
+            <resource type="value">true</resource>
+        </setup>
+        <database>
+            <password type="value">somepassword</password>
+            <driver type="value">oracle.jdbc.OracleDriver</driver>
+            <dialect type="value">org.hibernate.dialect.Oracle10gDialect</dialect>
+            <connection-url type="value">jdbc:oracle:thin:@//svventddb01.intra.cegeka.be:12345/service</connection-url>
+            <username type="value">someusername</username>
+        </database>
+    </generic>
+    <cloud>
+        <connection>
+            <service>
+                <predefined type="value">false</predefined>
+                <endpoint type="value">http://scriptlic8.cegeka.be:13442</endpoint>
+            </service>
+            <server>
+                <username type="value">4S4R-UmQdh0kXuWvS27K</username>
+                <password encryption="aes" type="value">AAAAAAAAABAzQ1F6NEFmODR4SjBGMVdXDEqTwYGFEuqNENsxKGIHiRD+kA8YuIhskcUOVyNKm8SZZsGwOuuybZuDrEh+9SUw</password>
+            </server>
+        </connection>
+        <baseurl>
+            <resource type="value">http://lbventddoc8-resource-partena.intra.cegeka.be:13242</resource>
+        </baseurl>
+    </cloud>
+</config>

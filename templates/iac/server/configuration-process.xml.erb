@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <!--
+
+
+For more info, check the manual.
+-->
+    <license>
+        <client>
+            <GUID type="value">9dd79eb644e0e7f4af767d616ab7d26ff3a16ecd</GUID>
+            <userhome encryption="aes" type="value">AAAAAAAAABAzQ1F6NEFmODR4SjBGMVdXm/Z6Bvo3Fd0VPSsmnDce0e+WRewNtvguUyBha6stzlk=</userhome>
+            <keyserver>
+                <uri type="value">http://scriptlic8.cegeka.be:13442</uri>
+            </keyserver>
+        </client>
+    </license>
+    <server>
+        <deploy>
+            <rest>
+                <security>
+                    <roles>
+                        <role0>
+                            <name type="value">adminrole</name>
+                        </role0>
+                    </roles>
+                </security>
+            </rest>
+        </deploy>
+        <documentflowadminsoap>
+            <security>
+                <roles>
+                    <role0>
+                        <name type="value">adminrole</name>
+                        <schema type="value"/>
+                    </role0>
+                </roles>
+            </security>
+        </documentflowadminsoap>
+        <htmlforms>
+            <administrator>
+                <administration-security>
+                    <roles>
+                        <role0>
+                            <name type="value">adminrole</name>
+                            <schema type="value"/>
+                        </role0>
+                        <role1>
+                            <name type="value">anonymousrole</name>
+                            <schema type="value"/>
+                        </role1>
+                    </roles>
+                </administration-security>
+            </administrator>
+        </htmlforms>
+        <security>
+            <key>
+                <public type="value">MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEZ5CYfBqpRJFugNaqNAoid3f7Zo6ct2eEhnNmTGFrdgcevuVtMwVMd3fXXF52sDiHXM6w2hHloZxP-_QRh-3b0g</public>
+            </key>
+            <security-server-location type="value">http://scriptlic8.cegeka.be:13442</security-server-location>
+        </security>
+    </server>
+    <generic>
+        <environment type="value">production</environment>
+        <hostname type="value">lbventddoc8-process-ventouris.intra.cegeka.be</hostname>
+        <tag>
+            <process type="value">ScripturaStartProcessServer</process>
+        </tag>
+        <setup>
+            <process type="value">true</process>
+        </setup>
+    </generic>
+    <cloud>
+        <connection>
+            <service>
+                <predefined type="value">false</predefined>
+                <endpoint type="value">http://scriptlic8.cegeka.be:13442</endpoint>
+            </service>
+            <server>
+                <username type="value">4S4R-UmQdh0kXuWvS27K</username>
+                <password encryption="aes" type="value">AAAAAAAAABAzQ1F6NEFmODR4SjBGMVdXDEqTwYGFEuqNENsxKGIHiRD+kA8YuIhskcUOVyNKm8SZZsGwOuuybZuDrEh+9SUw</password>
+            </server>
+        </connection>
+        <baseurl>
+            <process type="value">http://lbventddoc8-process-ventouris.intra.cegeka.be:13542</process>
+        </baseurl>
+    </cloud>
+</config>
