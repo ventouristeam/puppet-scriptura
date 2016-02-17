@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+<!--
+For more info, check the manual.
+-->
+    <license>
+        <client>
+          <!--
+            <GUID type="value"></GUID>
+            <userhome type="value"></userhome>
+          -->
+            <keyserver>
+                <uri type="value"><%= @key_server_url %></uri>
+            </keyserver>
+        </client>
+    </license>
+    <server>
+        <resources>
+            <stores>
+                <store_0>
+                    <name type="value">default-store</name>
+                    <type type="value">havail</type>
+                    <settings>
+                        <location type="value"><%= @havail_dir %></location>
+                        <location-temp type="value">/data/scriptura/resource/scriptura-8.0/data/tmp</location-temp>
+                    </settings>
+                </store_0>
+            </stores>
+        </resources>
+        <security>
+            <security-server-location type="value"><%= @security_server_url %></security-server-location>
+            <key>
+                <public type="value"><%= @security_server_key %></public>
+            </key>
+        </security>
+        <monitorserver>
+            <password type="value"/>
+        </monitorserver>
+        <documentflow>
+            <security>
+                <roles>
+                    <role1>
+                        <canpreview type="value">true</canpreview>
+                        <name type="value">adminrole</name>
+                        <canadmin type="value">true</canadmin>
+                    </role1>
+                    <role0>
+                        <canpreview type="value">true</canpreview>
+                        <canadmin type="value">false</canadmin>
+                        <name type="value">anonymousrole</name>
+                    </role0>
+                </roles>
+            </security>
+        </documentflow>
+    </server>
+    <cloud>
+        <connection>
+            <service>
+                <predefined type="value">false</predefined>
+                <endpoint type="value"><%= @key_server_url %></endpoint>
+            </service>
+            <server>
+                <username type="value"><%= @key_server_username %></username>
+                <password encryption="aes" type="value"><%= @key_server_password %></password>
+            </server>
+        </connection>
+        <baseurl>
+            <resource type="value"><%= @base_url %></resource>
+        </baseurl>
+    </cloud>
+    <generic>
+        <setup>
+            <resource type="value">true</resource>
+        </setup>
+        <environment type="value">production</environment>
+        <database>
+            <password type="value">somepassword</password>
+            <driver type="value">oracle.jdbc.OracleDriver</driver>
+            <dialect type="value">org.hibernate.dialect.Oracle11gDialect</dialect>
+            <connection-url type="value">jdbc:oracle:thin:@//server:1521/service</connection-url>
+            <username type="value">someusername</username>
+        </database>
+        <tag>
+            <resource type="value">ScripturaStartResourceServer</resource>
+        </tag>
+        <hostname type="value"><%= @hostname %></hostname>
+    </generic>
+</config>

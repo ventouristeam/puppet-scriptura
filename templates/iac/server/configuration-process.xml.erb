@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+<!--
+For more info, check the manual.
+-->
+    <license>
+        <client>
+          <!--
+            <GUID type="value"></GUID>
+            <userhome encryption="aes" type="value"></userhome>
+          -->
+            <keyserver>
+                <uri type="value"><%= @key_server_url %></uri>
+            </keyserver>
+        </client>
+    </license>
+    <server>
+        <deploy>
+            <rest>
+                <security>
+                    <roles>
+                        <role0>
+                            <name type="value">adminrole</name>
+                        </role0>
+                    </roles>
+                </security>
+            </rest>
+        </deploy>
+        <documentflowadminsoap>
+            <security>
+                <roles>
+                    <role0>
+                        <name type="value">adminrole</name>
+                        <schema type="value"/>
+                    </role0>
+                </roles>
+            </security>
+        </documentflowadminsoap>
+        <htmlforms>
+            <administrator>
+                <administration-security>
+                    <roles>
+                        <role0>
+                            <name type="value">adminrole</name>
+                            <schema type="value"/>
+                        </role0>
+                        <role1>
+                            <name type="value">anonymousrole</name>
+                            <schema type="value"/>
+                        </role1>
+                    </roles>
+                </administration-security>
+            </administrator>
+        </htmlforms>
+        <security>
+            <key>
+                <public type="value"><%= @security_server_key %></public>
+            </key>
+            <security-server-location type="value"><%= @security_server_url %></security-server-location>
+        </security>
+    </server>
+    <generic>
+        <environment type="value">production</environment>
+        <hostname type="value"><%= @hostname %></hostname>
+        <tag>
+            <process type="value">ScripturaStartProcessServer</process>
+        </tag>
+        <setup>
+            <process type="value">true</process>
+        </setup>
+    </generic>
+    <cloud>
+        <connection>
+            <service>
+                <predefined type="value">false</predefined>
+                <endpoint type="value"><%= @key_server_url %></endpoint>
+            </service>
+            <server>
+                <username type="value"><%= @key_server_username %></username>
+                <password encryption="aes" type="value"><%= @key_server_password %></password>
+            </server>
+        </connection>
+        <baseurl>
+            <process type="value"><%= @base_url %></process>
+        </baseurl>
+    </cloud>
+</config>
