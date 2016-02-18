@@ -1,3 +1,11 @@
+#scriptura::iac::server::config::xml:
+#  'scriptura-engage-resource_configuration.xml':
+#    lens: 'Xml.lns'
+#    incl: '/scriptura.home/scriptura-8.0/configuration/configuration.xml'
+#    context: '/files/scriptura.home/scriptura-8.0/configuration/configuration.xml'
+#    changes:
+#      - 'set config/templateprocessor/core/min-threads/#text 20'
+#      - 'set config/templateprocessor/core/max-threads/#text 20'
 define scriptura::iac::server::config(
   $version=undef,
   $type=undef,
@@ -27,6 +35,7 @@ define scriptura::iac::server::config(
   notice("Scriptura engage ${type} major and minor version: ${scriptura_major_minor_version}")
 
   $scriptura_config_location = "/data/scriptura/${type}/scriptura-${scriptura_major_minor_version}/configuration"
+  $scriptura_config_xml = hiera_hash('scriptura::iac::server::config::xml',{})
 
   if ! defined(File['/data/scriptura']){
     file { '/data/scriptura' :
@@ -61,30 +70,8 @@ define scriptura::iac::server::config(
     require => File["${scriptura_config_location}"]
   }
 
-  augeas { "modify configuration.xml in ${scriptura_config_location}" :
-    lens    => 'Xml.lns',
-    incl    => "${scriptura_config_location}/configuration.xml",
-    context => "/files${scriptura_config_location}/configuration.xml",
-    changes => [
-      "set config/templateprocessor/fonts/directories/directory0/#text ${fonts_dir}",
-      "set config/license/client/keyserver/uri/#text ${key_server_url}",
-      "set config/server/security/security-server-location/#text ${key_server_url}",
-      "set config/server/security/key/public/#text ${key_server_pubkey}",
-      "set config/generic/hostname/#text ${base_name}",
-      "set config/cloud/connection/service/endpoint/#text ${key_server_url}",
-      "set config/cloud/connection/server/username/#text ${key_server_user}",
-      "set config/cloud/connection/server/password/#text ${key_server_pass}",
-      "set config/cloud/baseurl/${type}/#text ${base_url}",
-      #"set config/templateprocessor/mail/com.id.scriptura.templateprocessor.email.impl.javamail/host/#text ${mail_host}",
-      #"set config/templateprocessor/core/min-threads/#text ${core_min_threads}",
-      #"set config/templateprocessor/core/max-threads/#text ${core_max_threads}",
-      #"set config/templateprocessor/cache/max-memory-entries/#text ${cache_max_memory_entries}",
-      #"set config/templateprocessor/cache/max-disk-space/#text ${cache_max_disk_space}",
-      #"set config/templateprocessor/cache/max-disk-entries/#text ${cache_max_disk_entries}",
-      #"set config/generic/logger/max-file-index/#text ${logger_max_file_index}",
-      #"set config/generic/logger/max-file-size/#text ${logger_max_file_size}",
-    ],
-    require => File["${scriptura_config_location}/configuration.xml"]
+  if defined($scriptura_config_xml) {
+    create_resources('augeas',$scriptura_config_xml)
   }
 
 }
