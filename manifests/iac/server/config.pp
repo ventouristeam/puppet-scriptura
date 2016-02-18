@@ -1,11 +1,5 @@
-#scriptura::iac::server::config::xml:
-#  'scriptura-engage-resource_configuration.xml':
-#    lens: 'Xml.lns'
-#    incl: '/scriptura.home/scriptura-8.0/configuration/configuration.xml'
-#    context: '/files/scriptura.home/scriptura-8.0/configuration/configuration.xml'
-#    changes:
-#      - 'set config/templateprocessor/core/min-threads/#text 20'
-#      - 'set config/templateprocessor/core/max-threads/#text 20'
+# Resource: scriptura::iac::server::config
+#
 define scriptura::iac::server::config(
   $version=undef,
   $type=undef,
@@ -34,8 +28,9 @@ define scriptura::iac::server::config(
   $scriptura_major_minor_version = regsubst($scriptura_version_withoutrelease, '^(\d+\.\d+).\d+$', '\1')
   notice("Scriptura engage ${type} major and minor version: ${scriptura_major_minor_version}")
 
+  $scriptura_settings_location = "/data/scriptura/${type}/scriptura-${scriptura_major_minor_version}"
   $scriptura_config_location = "/data/scriptura/${type}/scriptura-${scriptura_major_minor_version}/configuration"
-  $scriptura_config_xml = hiera_hash('scriptura::iac::server::config::xml',{})
+  $scriptura_config_xml = hiera_hash("scriptura::iac::server::config::xml::${type}",{})
 
   if ! defined(File['/data/scriptura']){
     file { '/data/scriptura' :
@@ -46,28 +41,28 @@ define scriptura::iac::server::config(
     }
   }
 
-  file { "/data/scriptura/${type}/{scriptura-engage-${type}-${scriptura_major_minor_version}" :
+  file { $scriptura_settings_location :
     ensure => directory,
     owner  => 'scriptura',
     group  => 'scriptura',
     mode   => '0755'
   }
 
-  file { "${scriptura_config_location}" :
+  file { $scriptura_config_location :
     ensure  => directory,
     owner   => 'scriptura',
     group   => 'scriptura',
     mode    => '0755',
-    require => File["/data/scriptura/scriptura-engage-${type}-${scriptura_major_minor_version}"]
+    require => File[$scriptura_settings_location]
   }
 
   file { "${scriptura_config_location}/configuration.xml":
     ensure  => file,
     owner   => 'scriptura',
     group   => 'scriptura',
-    source  => "puppet:///modules/${module_name}/server/data/configuration-${type}.xml",
+    content => template("${module_name}/iac/server/configuration-${type}.xml.erb"),
     replace => false,
-    require => File["${scriptura_config_location}"]
+    require => File[$scriptura_config_location]
   }
 
   if defined($scriptura_config_xml) {
