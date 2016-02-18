@@ -28,8 +28,8 @@ define scriptura::iac::server(
     fail('Class[Scriptura::IAC::Server]: parameter version must be provided')
   }
 
-  if ! $key_server {
-    fail('Class[Scriptura::IAC::Server]: parameter key_server must be provided')
+  if ! $key_server_url {
+    fail('Class[Scriptura::IAC::Server]: parameter key_server_url must be provided')
   }
 
   if ! ($server_category in ['auto', 'production', 'backup', 'test', 'development']) {
