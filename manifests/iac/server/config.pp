@@ -46,7 +46,7 @@ define scriptura::iac::server::config(
     }
   }
 
-  file { "/data/scriptura/scriptura-engage-${type}-${scriptura_major_minor_version}" :
+  file { "/data/scriptura/${type}/{scriptura-engage-${type}-${scriptura_major_minor_version}" :
     ensure => directory,
     owner  => 'scriptura',
     group  => 'scriptura',
