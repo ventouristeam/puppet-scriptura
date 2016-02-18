@@ -34,6 +34,7 @@ define scriptura::iac::server::config(
   $scriptura_major_minor_version = regsubst($scriptura_version_withoutrelease, '^(\d+\.\d+).\d+$', '\1')
   notice("Scriptura engage ${type} major and minor version: ${scriptura_major_minor_version}")
 
+  $scriptura_settings_location = "/data/scriptura/${type}/scriptura-${scriptura_major_minor_version}"
   $scriptura_config_location = "/data/scriptura/${type}/scriptura-${scriptura_major_minor_version}/configuration"
   $scriptura_config_xml = hiera_hash('scriptura::iac::server::config::xml',{})
 
@@ -46,19 +47,19 @@ define scriptura::iac::server::config(
     }
   }
 
-  file { "/data/scriptura/${type}/{scriptura-engage-${type}-${scriptura_major_minor_version}" :
+  file { $scriptura_settings_location :
     ensure => directory,
     owner  => 'scriptura',
     group  => 'scriptura',
     mode   => '0755'
   }
 
-  file { "${scriptura_config_location}" :
+  file { $scriptura_config_location :
     ensure  => directory,
     owner   => 'scriptura',
     group   => 'scriptura',
     mode    => '0755',
-    require => File["/data/scriptura/scriptura-engage-${type}-${scriptura_major_minor_version}"]
+    require => File[$scriptura_settings_location]
   }
 
   file { "${scriptura_config_location}/configuration.xml":
@@ -67,7 +68,7 @@ define scriptura::iac::server::config(
     group   => 'scriptura',
     source  => "puppet:///modules/${module_name}/server/data/configuration-${type}.xml",
     replace => false,
-    require => File["${scriptura_config_location}"]
+    require => File[$scriptura_config_location]
   }
 
   if defined($scriptura_config_xml) {
