@@ -10,9 +10,8 @@ define scriptura::iac::server::package(
 
   case $type {
     frontend: {
-      package { 'existdb':
-        ensure => 'present'
-      }
+      package { 'existdb': ensure => present }
+      service { 'existdb': ensure => running }
     }
     default: {
       info('No additional packages required')
