@@ -65,7 +65,7 @@ define scriptura::iac::server::config(
     require => File[$scriptura_config_location]
   }
 
-  if defined($scriptura_config_xml) {
+  if $scriptura_config_xml {
     create_resources('augeas',$scriptura_config_xml)
   }
 
