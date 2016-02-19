@@ -76,7 +76,7 @@ define scriptura::iac::server(
 
   scriptura::iac::server::service { "scriptura-engage-$type" :
     type    => $type,
-    require => Scriptura::Iac::Server::Package["scriptura-engage-$type"]
+    require => Scriptura::Iac::Server::Config["scriptura-engage-$type"]
   }
 
 }
