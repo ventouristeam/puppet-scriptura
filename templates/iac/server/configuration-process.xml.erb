@@ -33,6 +33,8 @@ For more info, check the manual.
                 <connection-url type="value">jdbc:oracle:thin:@//server:1521/service</connection-url>
                 <username type="value"></username>
                 <password encryption="aes" type="value"></password>
+                <!-- Disabling storage of flowinstances will improve performance and will decrease DB load -->
+                <storeflowinstances type="value">true</storeflowinstances>
             </database>
         </documentflow>
         <documentflowadminsoap>
