@@ -55,6 +55,19 @@ For more info, check the manual.
             <frontend type="value">true</frontend>
         </setup>
     </generic>
+    <templateprocessor>
+        <mail>
+            <com.id.scriptura.templateprocessor.email.impl.javamail>
+                <host type="value"><%= @mail_host %></host>
+                <port type="value">25</port>
+            </com.id.scriptura.templateprocessor.email.impl.javamail>
+        </mail>
+        <fonts>
+            <directories>
+              <directory0 type="value"><%= @fonts_dir %></directory0>
+            </directories>
+        </fonts>
+    </templateprocessor>
     <cloud>
         <connection>
             <service>
