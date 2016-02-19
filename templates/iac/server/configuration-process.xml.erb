@@ -26,6 +26,15 @@ For more info, check the manual.
                 </security>
             </rest>
         </deploy>
+        <documentflow>
+            <database>
+                <driver type="value">oracle.jdbc.OracleDriver</driver>
+                <dialect type="value">org.hibernate.dialect.Oracle10gDialect</dialect>
+                <connection-url type="value">jdbc:oracle:thin:@//server:1521/service</connection-url>
+                <username type="value"></username>
+                <password encryption="aes" type="value"></password>
+            </database>
+        </documentflow>
         <documentflowadminsoap>
             <security>
                 <roles>
@@ -68,6 +77,13 @@ For more info, check the manual.
         <setup>
             <process type="value">true</process>
         </setup>
+        <database>
+            <driver type="value">oracle.jdbc.OracleDriver</driver>
+            <dialect type="value">org.hibernate.dialect.Oracle11gDialect</dialect>
+            <connection-url type="value">jdbc:oracle:thin:@//server:1521/service</connection-url>
+            <username type="value"></username>
+            <password encryption="aes" type="value"></password>
+        </database>
     </generic>
     <cloud>
         <connection>
