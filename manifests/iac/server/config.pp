@@ -39,6 +39,20 @@ define scriptura::iac::server::config(
       group  => 'scriptura',
       mode   => '0770'
     }
+    file { '/data/scriptura/plugins' :
+      ensure  => directory,
+      owner   => 'scriptura',
+      group   => 'scriptura',
+      mode    => '0770',
+      require => File['/data/scriptura']
+    }
+    file { "/data/scriptura/plugins/scriptura-${scriptura_major_minor_version}" :
+      ensure  => directory,
+      owner   => 'scriptura',
+      group   => 'scriptura',
+      mode    => '0770',
+      require => File['/data/scriptura/plugins']
+    }
   }
 
   file { $scriptura_settings_location :
