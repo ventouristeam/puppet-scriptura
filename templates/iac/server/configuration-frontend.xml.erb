@@ -15,6 +15,29 @@ For more info, check the manual.
         </client>
     </license>
     <server>
+      <livedocs>
+        <editable-block>
+          <resolve-level type="value">datafield</resolve-level>
+        </editable-block>
+        <default-expanded type="value">false</default-expanded>
+        <standalone type="value">true</standalone>
+        <show-buttons type="value">true</show-buttons>
+        <preview-mode type="value">popup</preview-mode>
+        <save-enable type="value">true</save-enable>
+        <message-domain type="value">http://10.0.0.123</message-domain>
+        <external>
+          <host type="value">myProcessServer</host>
+          <port type="value">13542</port>
+        </external>
+        <exist>
+          <host type="value">localhost</host>
+          <port type="value">8080</port>
+          <username type="value">admin</username>
+          <password type="value"></password>
+          <collection type="value">/db/apps/livedocs</collection>
+          <system type="value">/db/system/config</system>
+        </exist>
+      </livedocs>
         <security>
             <key>
               <public type="value"><%= @security_server_key %></public>
