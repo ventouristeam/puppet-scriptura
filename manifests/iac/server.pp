@@ -55,7 +55,7 @@ define scriptura::iac::server(
     type                      => $type,
     base_url                  => $base_url,
     hostname                  => $hostname,
-    havail_dir                => $havail,
+    havail_dir                => $havail_dir,
     key_server_url            => $key_server_url,
     key_server_username       => $key_server_username,
     key_server_password       => $key_server_password,
