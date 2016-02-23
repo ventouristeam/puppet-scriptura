@@ -15,6 +15,18 @@ For more info, check the manual.
         </client>
     </license>
     <server>
+      <resources>
+        <stores>
+          <store_0>
+            <name type="value">default-store</name>
+            <type type="value">havail</type>
+            <settings>
+              <location type="value"><%= @havail_dir %>/default-store</location>
+              <location-temp type="value"><%= @havail_dir %>/tmp</location-temp>
+            </settings>
+          </store_0>
+        </stores>
+      </resources>
       <livedocs>
         <editable-block>
           <resolve-level type="value">datafield</resolve-level>
@@ -54,6 +66,13 @@ For more info, check the manual.
         <setup>
             <frontend type="value">true</frontend>
         </setup>
+        <database>
+            <driver type="value">oracle.jdbc.OracleDriver</driver>
+            <dialect type="value">org.hibernate.dialect.Oracle10gDialect</dialect>
+            <connection-url type="value">jdbc:oracle:thin:@//server:1521/service</connection-url>
+            <username type="value"></username>
+            <password encryption="aes" type="value"></password>
+        </database>
     </generic>
     <templateprocessor>
         <mail>
