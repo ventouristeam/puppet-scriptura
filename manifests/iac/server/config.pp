@@ -18,6 +18,7 @@ define scriptura::iac::server::config(
   $cache_max_memory_entries='100',
   $cache_max_disk_space='500',
   $cache_max_disk_entries='200',
+  $data_dir='/data/scriptura'
   $fonts_dir='/data/scriptura/Fonts',
   $logger_max_file_index='50',
   $logger_max_file_size='2048'
@@ -28,32 +29,9 @@ define scriptura::iac::server::config(
   $scriptura_major_minor_version = regsubst($scriptura_version_withoutrelease, '^(\d+\.\d+).\d+$', '\1')
   notice("Scriptura engage ${type} major and minor version: ${scriptura_major_minor_version}")
 
-  $scriptura_settings_location = "/data/scriptura/${type}/scriptura-${scriptura_major_minor_version}"
-  $scriptura_config_location = "/data/scriptura/${type}/scriptura-${scriptura_major_minor_version}/configuration"
+  $scriptura_settings_location = "/${data_dir}/${type}/scriptura-${scriptura_major_minor_version}"
+  $scriptura_config_location = "/${data_dir}/${type}/scriptura-${scriptura_major_minor_version}/configuration"
   $scriptura_config_xml = hiera_hash("scriptura::iac::server::config::xml::${type}",{})
-
-  if ! defined(File['/data/scriptura']){
-    file { '/data/scriptura' :
-      ensure => directory,
-      owner  => 'scriptura',
-      group  => 'scriptura',
-      mode   => '0770'
-    }
-    file { '/data/scriptura/plugins' :
-      ensure  => directory,
-      owner   => 'scriptura',
-      group   => 'scriptura',
-      mode    => '0770',
-      require => File['/data/scriptura']
-    }
-    file { "/data/scriptura/plugins/scriptura-${scriptura_major_minor_version}" :
-      ensure  => directory,
-      owner   => 'scriptura',
-      group   => 'scriptura',
-      mode    => '0770',
-      require => File['/data/scriptura/plugins']
-    }
-  }
 
   file { $scriptura_settings_location :
     ensure => directory,
