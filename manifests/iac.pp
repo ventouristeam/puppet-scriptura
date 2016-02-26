@@ -20,6 +20,6 @@ class scriptura::iac {
 
   $data_dir = hiera_hash('scriptura::iac::data_dir',{})
 
-  create_resource(file,$data_dir)
+  create_resources(file,$data_dir)
 
 }
