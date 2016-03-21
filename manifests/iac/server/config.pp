@@ -18,7 +18,7 @@ define scriptura::iac::server::config(
   $cache_max_memory_entries='100',
   $cache_max_disk_space='500',
   $cache_max_disk_entries='200',
-  $data_dir='/data/scriptura'
+  $data_dir='/data/scriptura',
   $fonts_dir='/data/scriptura/Fonts',
   $logger_max_file_index='50',
   $logger_max_file_size='2048'
