@@ -54,7 +54,7 @@ class scriptura::server::config(
     ensure  => file,
     owner   => 'scriptura',
     group   => 'scriptura',
-    content => template("${module_name}/iac/server/configuration-${type}.xml.erb"),
+    source  => "puppet:///modules/${module_name}/server/data/configuration.xml",
     replace => false,
     require => File["${scriptura_config_location}"]
   }
