@@ -21,8 +21,13 @@ define scriptura::iac::server::config(
   $data_dir='/data/scriptura',
   $fonts_dir='/data/scriptura/Fonts',
   $logger_max_file_index='50',
-  $logger_max_file_size='2048'
+  $logger_max_file_size='2048',
+  $startup_options=undef
 ) {
+
+  if ! ($type in [ 'frontend', 'resource', 'process' ]) {
+    fail("Scriptura engage type '${type}' is not valid");
+  }
 
   $scriptura_version_withoutrelease = regsubst($version, '^(\d+\.\d+\.\d+)-\d+\..*$', '\1')
   notice("Scriptura engage ${type} version without release: ${scriptura_version_withoutrelease}")
@@ -32,6 +37,7 @@ define scriptura::iac::server::config(
   $scriptura_settings_location = "/${data_dir}/${type}/scriptura-${scriptura_major_minor_version}"
   $scriptura_config_location = "/${data_dir}/${type}/scriptura-${scriptura_major_minor_version}/configuration"
   $scriptura_config_xml = hiera_hash("scriptura::iac::server::config::xml::${type}",{})
+  $initcap_type = capitalize($type)
 
   file { $scriptura_settings_location :
     ensure => directory,
@@ -59,6 +65,17 @@ define scriptura::iac::server::config(
 
   if $scriptura_config_xml {
     create_resources('augeas',$scriptura_config_xml)
+  }
+
+  if $startup_options {
+    file { "/opt/scriptura/${$type}/start${$type}server/ScripturaStart${initcap_type}Server.ini":
+      ensure  => file,
+      owner   => 'scriptura',
+      group   => 'scriptura',
+      content => template("${module_name}/iac/server/ScripturaStart${initcap_type}Server.ini.erb"),
+      replace => true,
+      require => File[$scriptura_config_location]
+    }
   }
 
 }

@@ -20,7 +20,8 @@ define scriptura::iac::server(
   $data_dir='/data/scriptura',
   $fonts_dir='/data/scriptura/Fonts',
   $logger_max_file_index='50',
-  $logger_max_file_size='2048'
+  $logger_max_file_size='2048',
+  $startup_options=undef
 ) {
 
   include stdlib
@@ -73,6 +74,7 @@ define scriptura::iac::server(
     fonts_dir                 => $fonts_dir,
     logger_max_file_index     => $logger_max_file_index,
     logger_max_file_size      => $logger_max_file_size,
+    startup_options           => $startup_options,
     require                   => Scriptura::Iac::Server::Package["scriptura-engage-$type"]
   }
 

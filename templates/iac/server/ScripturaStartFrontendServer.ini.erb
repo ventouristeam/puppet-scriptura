@@ -1,0 +1,42 @@
+-vm
+/usr/bin/java
+-startup
+../artifacts/plugins/org.eclipse.equinox.launcher_1.3.0.v20130327-1440.jar
+--launcher.library
+../artifacts/plugins/org.eclipse.equinox.launcher.gtk.linux.x86_64_1.1.200.v20130521-0416
+--launcher.XXMaxPermSize
+256m
+--launcher.suppressErrors
+-clean
+-noSplash
+-nl
+en_US
+-id:log
+startfrontendserver.log
+-id:syslog
+-install
+/opt/scriptura/frontend/startfrontendserver
+-server
+-vmargs
+-Djava.security.auth.login.config=/opt/scriptura/frontend/startfrontendserver/../configuration/login.conf
+-Xms2048M
+-Xmx2048M
+-XX:ReservedCodeCacheSize=128m
+-Djava.awt.headless=true
+-Dorg.mortbay.log.class=com.id.serverapplication.servletcontainer.internal.logger.JettyToLogger
+-Dcom.sun.media.jai.disableMediaLib=true
+-Dcom.id.server.category=frontend
+-Dcom.id.port.range=133
+-Dcom.id.default.port.range=133
+-Dosgi.sharedConfiguration.area=file:configuration
+-Dosgi.configuration.area=@user.home/scriptura-8.0/runtime/startfrontendserver-runtime
+-Dorg.apache.jasper.compiler.disablejsr199=true
+-XX:OnOutOfMemoryError=/bin/sh /opt/scriptura/frontend/crashhandlers/outofmemory.sh %p
+-XX:+AggressiveHeap
+-XX:+UseCompressedOops
+-Duser.home=/data/scriptura/frontend
+<% if not @startup_options.nil? %>
+<% @startup_options.each do |startup_option| -%>
+<%= startup_option %>
+<% end -%>
+<% end %>
