@@ -26,7 +26,7 @@ define scriptura::iac::server::config(
 ) {
 
   if ! ($type in [ 'frontend', 'resource', 'process' ]) {
-    fail("Scriptura engage type '${type}' is not valid");
+    fail("Scriptura engage type '${type}' is not valid")
   }
 
   $scriptura_version_withoutrelease = regsubst($version, '^(\d+\.\d+\.\d+)-\d+\..*$', '\1')
