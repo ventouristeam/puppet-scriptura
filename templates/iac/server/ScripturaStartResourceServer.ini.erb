@@ -35,7 +35,7 @@ startresourceserver.log
 -XX:+AggressiveHeap
 -XX:+UseCompressedOops
 -Duser.home=/data/scriptura/resource
-<% if not @startup_options.nil? %>
+<% if @startup_options %>
 <% @startup_options.each do |startup_option| -%>
 <%= startup_option %>
 <% end -%>

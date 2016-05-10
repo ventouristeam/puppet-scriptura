@@ -33,7 +33,7 @@ startprocessserver.log
 -XX:+AggressiveHeap
 -XX:+UseCompressedOops
 -Duser.home=/data/scriptura/process
-<% if not @startup_options.nil? %>
+<% if not @startup_options %>
 <% @startup_options.each do |startup_option| -%>
 <%= startup_option %>
 <% end -%>
