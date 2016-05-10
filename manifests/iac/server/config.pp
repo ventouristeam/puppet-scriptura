@@ -67,7 +67,7 @@ define scriptura::iac::server::config(
     create_resources('augeas',$scriptura_config_xml)
   }
 
-  if $startup_options {
+  if defined('$startup_options') {
     file { "/opt/scriptura/${$type}/start${$type}server/ScripturaStart${initcap_type}Server.ini":
       ensure  => file,
       owner   => 'scriptura',
