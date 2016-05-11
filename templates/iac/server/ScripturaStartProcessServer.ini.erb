@@ -1,0 +1,40 @@
+-vm
+/usr/bin/java
+-startup
+../artifacts/plugins/org.eclipse.equinox.launcher_1.3.0.v20130327-1440.jar
+--launcher.library
+../artifacts/plugins/org.eclipse.equinox.launcher.gtk.linux.x86_64_1.1.200.v20130521-0416
+--launcher.XXMaxPermSize
+256m
+--launcher.suppressErrors
+-clean
+-noSplash
+-nl
+en_US
+-id:log
+startprocessserver.log
+-id:syslog
+-install
+/opt/scriptura/process/startprocessserver
+-server
+-vmargs
+-Djava.security.auth.login.config=/opt/scriptura/process/startprocessserver/../configuration/login.conf
+-Xms4096M
+-Xmx4096M
+-XX:ReservedCodeCacheSize=128m
+-Djava.awt.headless=true
+-Dorg.mortbay.log.class=com.id.serverapplication.servletcontainer.internal.logger.JettyToLogger
+-Dcom.sun.media.jai.disableMediaLib=true
+-Dcom.id.server.category=process
+-Dosgi.sharedConfiguration.area=file:configuration
+-Dosgi.configuration.area=@user.home/scriptura-8.0/runtime/startprocessserver-runtime
+-Dorg.apache.jasper.compiler.disablejsr199=true
+-XX:OnOutOfMemoryError=/bin/sh /opt/scriptura/process/crashhandlers/outofmemory.sh %p
+-XX:+AggressiveHeap
+-XX:+UseCompressedOops
+-Duser.home=/data/scriptura/process
+<% if not @startup_options %>
+<% @startup_options.each do |startup_option| -%>
+<%= startup_option %>
+<% end -%>
+<% end %>
